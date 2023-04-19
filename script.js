@@ -10,7 +10,7 @@ ul.innerHTML=""
 itemsArray.map((item ,index)=>{
 
   const li = document.createElement('li')
-  li.innerHTML= `<div>${index+1}. ${item.title}  <button onclick="deleteTask(${item.id})">Delete</button></div>`;
+  li.innerHTML= `<div>${index+1}. ${item.title}  <button onclick="deleteTask(${item.id})">Delete</button>   <button onclick="editTask(${item.id})">Edit</button>   </div>`;
   ul.appendChild(li);
 
 });
@@ -19,8 +19,8 @@ itemsArray.map((item ,index)=>{
 showTask()
 // add task function
 function add(){
- 
-  if(input.value.length>3){
+  // Current object
+if(input.value.length>3){
 
   const currentObject={
     title:input.value,
@@ -53,8 +53,6 @@ for(let i=0; i<=itemsArray.length;i++){
 
 if(itemsArray[i].id===id){
   itemsArray.splice(i,1)
-
-
 }
 
 localStorage.setItem("todoList",JSON.stringify(itemsArray))
@@ -62,5 +60,37 @@ localStorage.setItem("todoList",JSON.stringify(itemsArray))
 showTask()
 }
 
+
+}
+
+
+
+function editTask(id){
+  for(let i=0; i<=itemsArray.length;i++){
+
+    if(itemsArray[i].id===id){
+    input.value=itemsArray[i].title
+
+
+    const currentObject={
+      title:input.value,
+      id: itemsArray[i].id
+    }
+
+
+    itemsArray.splice(i,1,currentObject)
+
+    }
+    
+
+
+  
+  }
+
+
+
+localStorage.setItem("todoList",JSON.stringify(itemsArray))
+
+showTask()
 
 }
