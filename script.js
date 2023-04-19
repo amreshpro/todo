@@ -19,19 +19,22 @@ itemsArray.map((item ,index)=>{
 showTask()
 // add task function
 function add(){
-  // Current object
-const currentObject={
-  title:input.value,
-  id: itemsArray.length>0 ? itemsArray.length+1 : 1
+ 
+  if(input.value.length>3){
+
+  const currentObject={
+    title:input.value,
+    id: itemsArray.length>0 ? itemsArray.length+1 : 1
+  }
+  
+  
+    itemsArray.push(currentObject);
+    localStorage.setItem('todoList', JSON.stringify(itemsArray));
+  
+    input.value = '';
+  
+    showTask()
 }
-
-
-  itemsArray.push(currentObject);
-  localStorage.setItem('todoList', JSON.stringify(itemsArray));
-
-  input.value = '';
-
-  showTask()
 }
 
 function clearAll(){
@@ -61,4 +64,3 @@ showTask()
 
 
 }
-
