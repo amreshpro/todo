@@ -3,28 +3,35 @@ const input = document.getElementById('item');
 // Global Array 
 let itemsArray = JSON.parse(localStorage.getItem('todoList')) || [];
 
+
+function showTask(){
 // showing data
-itemsArray.forEach(addTask);
-function addTask(text,id){
+ul.innerHTML=""
+itemsArray.map((item)=>{
+
   const li = document.createElement('li')
-  li.textContent = `${id}. ${text}`;
+  li.textContent = `${item.id}. ${item.title}`;
   ul.appendChild(li);
+
+});
 }
 
-
+showTask()
 // add task function
 function add(){
   // Current object
 const currentObject={
   title:input.value,
- id: itemsArray.length>0 ? itemsArray.length+1 : 1
+  id: itemsArray.length>0 ? itemsArray[itemsArray.length].id+1 : 1
 }
 
 
   itemsArray.push(currentObject);
   localStorage.setItem('todoList', JSON.stringify(itemsArray));
-  addTask(currentObject.title,currentObject.id);
+
   input.value = '';
+
+  showTask()
 }
 
 function del(){
