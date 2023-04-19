@@ -22,7 +22,7 @@ function add(){
   // Current object
 const currentObject={
   title:input.value,
-  id: itemsArray.length>0 ? itemsArray[itemsArray.length].id+1 : 1
+  id: itemsArray.length>0 ? itemsArray.length+1 : 1
 }
 
 
